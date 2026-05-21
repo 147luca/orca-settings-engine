@@ -127,12 +127,14 @@ def decide(features, intent="balanced", nozzle=0.4):
         setv("support_threshold_angle", 30, "support anything past 30deg from vertical")
     else:
         ss = ov["self_supported_pct"]
-        setv(
-            "enable_support",
-            0,
-            f"design is self-supporting ({ss}% of steep faces sit on built-in "
-            f"structure) — supports would jam internal features",
-        )
+        if ss is None:
+            reason = "no significant overhangs detected — supports not needed"
+        else:
+            reason = (
+                f"design is self-supporting ({ss}% of steep faces sit on built-in "
+                f"structure) — supports would jam internal features"
+            )
+        setv("enable_support", 0, reason)
 
     # ---- bed adhesion ----
     if flags["tall_narrow"] or flags["tiny"]:
