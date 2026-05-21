@@ -1,0 +1,14 @@
+# OrcaSlicer GPL source (parsed at build time, not redistributed)
+PrintConfig.cpp
+
+# Derived data — regenerable, and may embed local/personal printer names
+orca_all_settings.json
+orca_settings_enriched.json
+orca_settings_dictionary.md
+dict_fragments/
+
+# transient
+__pycache__/
+*.pyc
+/tmp/
+.DS_Store
